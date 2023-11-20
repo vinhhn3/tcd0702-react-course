@@ -1,17 +1,16 @@
 import React from "react";
 import UserItem from "./UserItem";
 
-class Users extends React.Component {
-  render() {
-    return (
-      <div style={userStyle}>
-        {this.props.usersData.map((user) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </div>
-    );
-  }
-}
+const Users = (props) => {
+  const { usersData } = props;
+  return (
+    <div style={userStyle}>
+      {usersData.map((user) => (
+        <UserItem key={user.id} user={user} />
+      ))}
+    </div>
+  );
+};
 const userStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",

@@ -1,35 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default class Search extends React.Component {
-  state = {
-    text: "",
-  };
+const Search = (props) => {
+  const [text, setText] = useState("");
 
-  handleClick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault(); // Stop form reloading
-    console.log(this.state.text);
-    this.props.handleSearch(this.state.text);
+    console.log(text);
+    props.handleSearch(this.state.text);
   };
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     console.log(e.target.value);
-    this.setState({ text: e.target.value });
+    setText(e.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <form>
-          <input
-            type="text"
-            placeholder="Search"
-            onChange={this.handleChange}
-          />
-          <button onClick={this.handleClick} className="btn btn-dark btn-block">
-            Search
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <form>
+        <input type="text" placeholder="Search" onChange={handleChange} />
+        <button onClick={handleClick} className="btn btn-dark btn-block">
+          Search
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Search;
