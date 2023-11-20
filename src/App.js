@@ -1,5 +1,7 @@
 import { Component } from "react";
 import "./App.css";
+import Body from "./layout/Boby";
+import Navbar from "./layout/Navbar";
 
 class App extends Component {
   // Properties
@@ -16,10 +18,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello World</h1>
-        <p>My name is {this.state.fullName}</p>
-        <p>I am {this.state.age} years old</p>
-        <button onClick={this.increaseAge}>Increase age</button>
+        <Navbar />
+        <Body />
       </div>
     );
   }
