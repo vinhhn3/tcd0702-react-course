@@ -6,7 +6,7 @@ const Search = (props) => {
   const handleClick = (e) => {
     e.preventDefault(); // Stop form reloading
     console.log(text);
-    props.handleSearch(this.state.text);
+    props.handleSearch(text);
   };
 
   const handleChange = (e) => {
