@@ -7,10 +7,12 @@ import Navbar from "./layout/Navbar";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import User from "./pages/User";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [userData, setUserData] = useState({});
 
   const handleSearch = (text) => {
     console.log(text);
@@ -20,6 +22,13 @@ const App = () => {
         console.log(response);
         setUsersData(response.data.items);
       });
+  };
+
+  const getDetails = (loginId) => {
+    axios.get(`https://api.github.com/users/${loginId}`).then((response) => {
+      console.log(response);
+      setUserData(response.data);
+    });
   };
 
   return (
@@ -33,6 +42,9 @@ const App = () => {
             </Route>
             <Route exact path="/about">
               <About />
+            </Route>
+            <Route exact path="/user/:loginId">
+              <User getDetails={getDetails} userData={userData} />
             </Route>
             <Route path="*">
               <NotFound />
