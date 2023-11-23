@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom/cjs/react-router-dom.min";
 import "./App.css";
+import { getUser, searchUsers } from "./api/githubApi";
 import Navbar from "./layout/Navbar";
 import About from "./pages/About";
 import Home from "./pages/Home";
@@ -11,24 +11,16 @@ import User from "./pages/User";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
-  const [searchText, setSearchText] = useState("");
   const [userData, setUserData] = useState({});
 
-  const handleSearch = (text) => {
-    console.log(text);
-    axios
-      .get(`https://api.github.com/search/users?q=${text}`)
-      .then((response) => {
-        console.log(response);
-        setUsersData(response.data.items);
-      });
+  const handleSearch = async (text) => {
+    const response = await searchUsers(text);
+    setUsersData(response.data.items);
   };
 
-  const getDetails = (loginId) => {
-    axios.get(`https://api.github.com/users/${loginId}`).then((response) => {
-      console.log(response);
-      setUserData(response.data);
-    });
+  const getDetails = async (loginId) => {
+    const response = await getUser(loginId);
+    setUserData(response.data);
   };
 
   return (
