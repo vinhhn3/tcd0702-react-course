@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import GithubContext from "../context/github/githubContext";
 
 const Search = (props) => {
+  const githubContext = useContext(GithubContext);
+  const { searchUsers } = githubContext;
   const [text, setText] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault(); // Stop form reloading
-    console.log(text);
-    props.handleSearch(text);
+    searchUsers(text);
   };
 
   const handleChange = (e) => {
