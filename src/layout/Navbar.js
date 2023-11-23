@@ -5,16 +5,16 @@ const Navbar = () => {
   return (
     <div>
       <div className="navbar bg-primary">
-        <h2>Github Finder</h2>
+        <h2>TCD0702 React Course</h2>
         <ul>
           <li>
-            {/* <a href="/">Home</a> */}
             <Link to="/">Home</Link>
           </li>
           <li>
-            {" "}
-            {/* <a href="/about">About</a> */}
             <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </div>
